@@ -12,9 +12,35 @@ namespace BlueDrops
 {
     public partial class Form1 : Form
     {
+        private Aquarium maleAkvarko = new Aquarium();
+        private Timer timer = new Timer();
+
         public Form1()
         {
             InitializeComponent();
+            timer.Interval = 20;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            this.DoubleBuffered = true;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            maleAkvarko.RainByPixel();
+            this.Refresh();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            //e.Graphics.DrawEllipse(new Pen(Color.Aqua),50,50,30,30);
+            //e.Graphics.FillEllipse(new SolidBrush(Color.Brown),14,15,15,15 );
+
+            var drp = maleAkvarko.drops;
+            for (int i = 0; i < drp.Count; i++)
+            {
+                e.Graphics.FillEllipse(new SolidBrush(drp[i].Color), drp[i].Xcoord, drp[i].Ycoord, drp[i].Diameter, drp[i].Diameter);
+            }
+
         }
     }
 }
