@@ -14,6 +14,7 @@ namespace BlueDrops
     {
         private Aquarium maleAkvarko = new Aquarium();
         private Timer timer = new Timer();
+        private Image DogImage = Image.FromFile(@"C:\Users\home\Source\Repos\BlueDrops\BlueDrops\images\Dog.png");
 
         public Form1()
         {
@@ -35,12 +36,16 @@ namespace BlueDrops
             //e.Graphics.DrawEllipse(new Pen(Color.Aqua),50,50,30,30);
             //e.Graphics.FillEllipse(new SolidBrush(Color.Brown),14,15,15,15 );
 
+           
+          
+           
+            e.Graphics.DrawImage(DogImage, maleAkvarko.HlidaciPes.Xcoord, maleAkvarko.HlidaciPes.Ycoord, 100, 100);
+
             var drp = maleAkvarko.drops;
             for (int i = 0; i < drp.Count; i++)
             {
                 e.Graphics.FillEllipse(new SolidBrush(drp[i].Color), drp[i].Xcoord, drp[i].Ycoord, drp[i].Diameter, drp[i].Diameter);
             }
-
         }
     }
 }
