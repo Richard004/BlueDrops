@@ -46,6 +46,11 @@ namespace BlueDrops
             {
                 e.Graphics.FillEllipse(new SolidBrush(drp[i].Color), drp[i].Xcoord, drp[i].Ycoord, drp[i].Diameter, drp[i].Diameter);
             }
+            var bub = maleAkvarko.bub;
+            for (int i = 0; i < bub.Count; i++)
+            {
+                e.Graphics.FillEllipse(new SolidBrush(bub[i].Color), bub[i].Xcoord, bub[i].Ycoord, bub[i].Diameter, bub[i].Diameter);
+            }
         }
     }
 }
