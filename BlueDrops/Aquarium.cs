@@ -29,6 +29,7 @@ namespace BlueDrops
         public Color Color = Color.Blue;
         public int Xcoord = 50;
         public float Ycoord = 50;
+        public float Yvelocity = 0;
         public int Diameter = 40;
     }
 
@@ -64,12 +65,19 @@ namespace BlueDrops
             var drp = balls;
             for (int i = 0; i < drp.Count; i++)
             {
-                var onedrop = drp[i];
-                onedrop.Ycoord = onedrop.Ycoord + 0.4f * i+0.5f;
+                var oneball = drp[i];
+                var timeStep = 0.02f;
+                var velocityY = oneball.Yvelocity;
+                var g = 200.81f;
+                var deltavelocityY = g * timeStep;
+                oneball.Ycoord = oneball.Ycoord + velocityY * timeStep;
+                oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
 
-                if (onedrop.Ycoord > 300)
+                if (oneball.Ycoord > 300)
                 {
-                    onedrop.Ycoord = 0;
+                    //oneball.Ycoord = 0;
+                    oneball.Yvelocity = - 0.9f * oneball.Yvelocity;
+                    //oneball.Yvelocity = -oneball.Yvelocity;
                 }
 
             }
