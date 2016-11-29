@@ -41,7 +41,7 @@ namespace BlueDrops
            
             e.Graphics.DrawImage(DogImage, maleAkvarko.HlidaciPes.Xcoord, maleAkvarko.HlidaciPes.Ycoord, 100, 100);
 
-            var drp = maleAkvarko.drops;
+            var drp = maleAkvarko.balls;
             for (int i = 0; i < drp.Count; i++)
             {
                 e.Graphics.FillEllipse(new SolidBrush(drp[i].Color), drp[i].Xcoord, drp[i].Ycoord, drp[i].Diameter, drp[i].Diameter);

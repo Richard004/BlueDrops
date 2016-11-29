@@ -24,7 +24,7 @@ namespace BlueDrops
         public int Diameter = 30;
     }
 
-    public class Drop
+    public class Ball
     {
         public Color Color = Color.Blue;
         public int Xcoord = 50;
@@ -34,21 +34,21 @@ namespace BlueDrops
 
     public class Aquarium
     {
-        public List<Drop> drops = new List<Drop>();
+        public List<Ball> balls = new List<Ball>();
         public Dog HlidaciPes = new Dog();
         public List <Bubble> bub = new List<Bubble>();
 
         public Aquarium()
         {
-            drops.Add(new Drop { Color = Color.BlueViolet, Xcoord = 10, Ycoord = 40, Diameter = 40 });
-            drops.Add(new Drop { Color = Color.Azure, Xcoord = 30, Ycoord = 140, Diameter = 60 });
-            drops.Add(new Drop { Color = Color.Red, Xcoord = 60, Ycoord = 20, Diameter = 80 });
-            drops.Add(new Drop { Color = Color.Bisque, Xcoord = 80, Ycoord = 60, Diameter = 50 });
-            drops.Add(new Drop { Color = Color.Green, Xcoord = 120, Ycoord = 90, Diameter = 50 });
-            drops.Add(new Drop { Color = Color.YellowGreen, Xcoord = 140, Ycoord = 60, Diameter = 50 });
-            drops.Add(new Drop { Color = Color.Red, Xcoord = 180, Ycoord = 60, Diameter = 50 });
-            drops.Add(new Drop { Color = Color.AliceBlue, Xcoord = 170, Ycoord = 50, Diameter = 50 });
-            drops.Add(new Drop { Color = Color.Blue, Xcoord = 70, Ycoord = 150, Diameter = 70 });
+            balls.Add(new Ball { Color = Color.BlueViolet, Xcoord = 10, Ycoord = 40, Diameter = 40 });
+            balls.Add(new Ball { Color = Color.Azure, Xcoord = 30, Ycoord = 140, Diameter = 60 });
+            balls.Add(new Ball { Color = Color.Red, Xcoord = 60, Ycoord = 20, Diameter = 80 });
+            balls.Add(new Ball { Color = Color.Bisque, Xcoord = 80, Ycoord = 60, Diameter = 50 });
+            balls.Add(new Ball { Color = Color.Green, Xcoord = 120, Ycoord = 90, Diameter = 50 });
+            balls.Add(new Ball { Color = Color.YellowGreen, Xcoord = 140, Ycoord = 60, Diameter = 50 });
+            balls.Add(new Ball { Color = Color.Red, Xcoord = 180, Ycoord = 60, Diameter = 50 });
+            balls.Add(new Ball { Color = Color.AliceBlue, Xcoord = 170, Ycoord = 50, Diameter = 50 });
+            balls.Add(new Ball { Color = Color.Blue, Xcoord = 70, Ycoord = 150, Diameter = 70 });
             bub.Add(new Bubble { Xcoord = 10, Ycoord = 25});
             bub.Add(new Bubble { Xcoord = 147, Ycoord =60 });
             bub.Add(new Bubble { Xcoord =132 , Ycoord = 70});
@@ -61,7 +61,7 @@ namespace BlueDrops
 
         public void RainByPixel()
         {
-            var drp = drops;
+            var drp = balls;
             for (int i = 0; i < drp.Count; i++)
             {
                 var onedrop = drp[i];
