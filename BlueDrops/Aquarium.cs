@@ -20,7 +20,7 @@ namespace BlueDrops
     {
         public Color Color = Color.LightBlue;
         public int Xcoord = 50;
-        public int Ycoord = 50;
+        public float Ycoord = 50;
         public int Diameter = 30;
     }
 
@@ -28,7 +28,7 @@ namespace BlueDrops
     {
         public Color Color = Color.Blue;
         public int Xcoord = 50;
-        public int Ycoord = 50;
+        public float Ycoord = 50;
         public int Diameter = 40;
     }
 
@@ -65,7 +65,7 @@ namespace BlueDrops
             for (int i = 0; i < drp.Count; i++)
             {
                 var onedrop = drp[i];
-                onedrop.Ycoord = onedrop.Ycoord + i;
+                onedrop.Ycoord = onedrop.Ycoord + 0.4f * i+0.5f;
 
                 if (onedrop.Ycoord > 300)
                 {
@@ -81,7 +81,7 @@ namespace BlueDrops
             for (int i = 0; i < bub.Count; i++)
             {
                 var onebub = bub[i];
-                onebub.Ycoord = onebub.Ycoord - i;
+                onebub.Ycoord = onebub.Ycoord - 0.2f*i-0.5f;
 
                 if (onebub.Ycoord < 0)
                 {
