@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BlueDrops.Properties;
 
 namespace BlueDrops
 {
@@ -14,7 +16,7 @@ namespace BlueDrops
     {
         private Aquarium maleAkvarko = new Aquarium();
         private Timer timer = new Timer();
-        private Image DogImage = Image.FromFile(@"C:\Users\home\Source\Repos\BlueDrops\BlueDrops\images\Dog.png");
+        private Image DogImage = Properties.Resources.Dog;
 
         public Form1()
         {
@@ -33,11 +35,9 @@ namespace BlueDrops
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.SmoothingMode=SmoothingMode.AntiAlias;
             //e.Graphics.DrawEllipse(new Pen(Color.Aqua),50,50,30,30);
             //e.Graphics.FillEllipse(new SolidBrush(Color.Brown),14,15,15,15 );
-
-           
-          
            
             e.Graphics.DrawImage(DogImage, maleAkvarko.HlidaciPes.Xcoord, maleAkvarko.HlidaciPes.Ycoord, 100, 100);
 
