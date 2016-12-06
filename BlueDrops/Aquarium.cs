@@ -35,9 +35,13 @@ namespace BlueDrops
 
     public class Aquarium
     {
+        #region Hnojik
         public List<Ball> balls = new List<Ball>();
         public Dog HlidaciPes = new Dog();
-        public List <Bubble> bub = new List<Bubble>();
+        public List<Bubble> bub = new List<Bubble>();
+        public int aqariumHeight = 300;
+        public int aqariumWidth = 180;
+        #endregion
 
         public Aquarium()
         {
@@ -65,24 +69,26 @@ namespace BlueDrops
             var drp = balls;
             for (int i = 0; i < drp.Count; i++)
             {
+                #region rain
                 var oneball = drp[i];
                 var timeStep = 0.02f;
                 var velocityY = oneball.Yvelocity;
-                var g = 200.81f;
+                var g = 2000.81f;
                 var deltavelocityY = g * timeStep;
                 oneball.Ycoord = oneball.Ycoord + velocityY * timeStep;
                 oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
 
-                if (oneball.Ycoord > 300)
+                if (oneball.Ycoord > aqariumHeight - oneball.Diameter)
                 {
                     //oneball.Ycoord = 0;
+                    oneball.Ycoord = aqariumHeight - oneball.Diameter;
                     oneball.Yvelocity = - 0.9f * oneball.Yvelocity;
                     //oneball.Yvelocity = -oneball.Yvelocity;
                 }
-
+                #endregion 
             }
             HlidaciPes.Xcoord = HlidaciPes.Xcoord + 1;
-            if (HlidaciPes.Xcoord > 180)
+            if (HlidaciPes.Xcoord > aqariumWidth)
             {
                 HlidaciPes.Xcoord = 0;
             }
@@ -93,7 +99,7 @@ namespace BlueDrops
 
                 if (onebub.Ycoord < 0)
                 {
-                    onebub.Ycoord = 300;
+                    onebub.Ycoord = aqariumHeight;
                 }
             }
 
