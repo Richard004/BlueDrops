@@ -28,7 +28,7 @@ namespace BlueDrops
     {
         public Color Color = Color.Blue;
         public float Xcoord = 50;
-        public float Xvelocity = 440;
+        public float Xvelocity = 0;
         public float Ycoord = 50;
         public float Yvelocity = 0;
         public int Diameter = 40;
@@ -42,6 +42,8 @@ namespace BlueDrops
         public List<Bubble> bub = new List<Bubble>();
         public int aqariumHeight = 300;
         public int aqariumWidth = 180;
+        public int cursorX = 300;
+        public int cursorY = 180;
         #endregion
 
         public Aquarium()
@@ -73,27 +75,35 @@ namespace BlueDrops
                 #region rain
                 var oneball = drp[i];
 
-                var Xcur = 50f;
-                var Ycur = 50f;
-                var a = Ycur - oneball.Ycoord;
-                var b = Xcur - oneball.Xcoord;
-                var c = Math.Sqrt(a*a + b*b);
-                var k = 1.0;
-                var Fg = k*1.0*1.0/(c*c);
+                var Xcur = (float)cursorX;
+                var Ycur = (float)cursorY;
+                var a = Ycur - (oneball.Ycoord + 0.5f * oneball.Diameter);
+                var b = Xcur - (oneball.Xcoord + 0.5f * oneball.Diameter);
+                var c = (float)Math.Sqrt(a*a + b*b);
+                var k = 500000.0f;
+                var Fg = k*1.0f*1.0f/(c*c);
                 var Fgx = Fg * b / c;
                 var Fgy = Fg * a / c;
 
-
+                if (c < 15)
+                {
+                    Fgx = 0;
+                    Fgy = 0;
+                }
 
                 var timeStep = 0.02f;
                 var velocityY = oneball.Yvelocity;
                 var velocityX = oneball.Xvelocity;
-                var g = 2000.81f;
-                var deltavelocityY = g * timeStep;
-                oneball.Ycoord = oneball.Ycoord + velocityY * timeStep;
-                oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
-                oneball.Xcoord = oneball.Xcoord + velocityX * timeStep;
+                var g = 0f;
 
+                var deltavelocityY = (g+Fgy) * timeStep;
+                oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
+
+                var deltavelocityX = (Fgx) * timeStep;
+                oneball.Xvelocity = oneball.Xvelocity + deltavelocityX;
+
+                oneball.Ycoord = oneball.Ycoord + velocityY * timeStep;
+                oneball.Xcoord = oneball.Xcoord + velocityX * timeStep;
 
                 if (oneball.Ycoord > aqariumHeight - oneball.Diameter)
                 {
@@ -106,7 +116,6 @@ namespace BlueDrops
                 {
                     oneball.Xcoord = 0;
                     oneball.Xvelocity = -oneball.Xvelocity;
-                    oneball.Xvelocity
                 }
                 if (oneball.Xcoord > aqariumWidth)
                 {

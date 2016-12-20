@@ -40,6 +40,10 @@ namespace BlueDrops
             //e.Graphics.FillEllipse(new SolidBrush(Color.Brown),14,15,15,15 );
             maleAkvarko.aqariumHeight = this.ClientRectangle.Height;
             maleAkvarko.aqariumWidth = this.ClientRectangle.Width;
+            maleAkvarko.cursorX= this.PointToClient(MousePosition).X;
+            maleAkvarko.cursorY= this.PointToClient(MousePosition).Y;
+            maleAkvarko.aqariumWidth = this.ClientRectangle.Width;
+
             e.Graphics.DrawImage(DogImage, maleAkvarko.HlidaciPes.Xcoord, maleAkvarko.HlidaciPes.Ycoord, 100, 100);
 
             var drp = maleAkvarko.balls;
@@ -52,6 +56,7 @@ namespace BlueDrops
             {
                 e.Graphics.FillEllipse(new SolidBrush(bub[i].Color), bub[i].Xcoord, bub[i].Ycoord, bub[i].Diameter, bub[i].Diameter);
             }
+            e.Graphics.FillEllipse(new SolidBrush(Color.Red), maleAkvarko.cursorX, maleAkvarko.cursorY, 15, 15);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
