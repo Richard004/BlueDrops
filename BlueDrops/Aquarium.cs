@@ -27,7 +27,8 @@ namespace BlueDrops
     public class Ball
     {
         public Color Color = Color.Blue;
-        public int Xcoord = 50;
+        public float Xcoord = 50;
+        public float Xvelocity = 440;
         public float Ycoord = 50;
         public float Yvelocity = 0;
         public int Diameter = 40;
@@ -73,10 +74,13 @@ namespace BlueDrops
                 var oneball = drp[i];
                 var timeStep = 0.02f;
                 var velocityY = oneball.Yvelocity;
+                var velocityX = oneball.Xvelocity;
                 var g = 2000.81f;
                 var deltavelocityY = g * timeStep;
                 oneball.Ycoord = oneball.Ycoord + velocityY * timeStep;
                 oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
+                oneball.Xcoord = oneball.Xcoord + velocityX * timeStep;
+
 
                 if (oneball.Ycoord > aqariumHeight - oneball.Diameter)
                 {
@@ -84,6 +88,17 @@ namespace BlueDrops
                     oneball.Ycoord = aqariumHeight - oneball.Diameter;
                     oneball.Yvelocity = - 0.9f * oneball.Yvelocity;
                     //oneball.Yvelocity = -oneball.Yvelocity;
+                }
+                if (oneball.Xcoord < 0)
+                {
+                    oneball.Xcoord = 0;
+                    oneball.Xvelocity = -oneball.Xvelocity;
+                    oneball.Xvelocity
+                }
+                if (oneball.Xcoord > aqariumWidth)
+                {
+                    oneball.Xcoord = aqariumWidth;
+                    oneball.Xvelocity = -oneball.Xvelocity;
                 }
                 #endregion 
             }
