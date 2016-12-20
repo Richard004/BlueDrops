@@ -65,7 +65,21 @@ namespace BlueDrops
             var drp = balls;
             for (int i = 0; i < drp.Count; i++)
             {
+
                 var oneball = drp[i];
+
+                var Xcur = 50f;
+                var Ycur = 50f;
+                var a = Ycur - oneball.Ycoord;
+                var b = Xcur - oneball.Xcoord;
+                var c = Math.Sqrt(a*a + b*b);
+                var k = 1.0;
+                var Fg = k*1.0*1.0/(c*c);
+                var Fgx = Fg * b / c;
+                var Fgy = Fg * a / c;
+
+
+
                 var timeStep = 0.02f;
                 var velocityY = oneball.Yvelocity;
                 var g = 200.81f;
