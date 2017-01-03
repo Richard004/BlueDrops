@@ -56,7 +56,7 @@ namespace BlueDrops
             {
                 e.Graphics.FillEllipse(new SolidBrush(bub[i].Color), bub[i].Xcoord, bub[i].Ycoord, bub[i].Diameter, bub[i].Diameter);
             }
-            e.Graphics.FillEllipse(new SolidBrush(Color.Red), maleAkvarko.cursorX, maleAkvarko.cursorY, 15, 15);
+            e.Graphics.FillEllipse(new SolidBrush(Color.Black), maleAkvarko.cursorX, maleAkvarko.cursorY, 20, 20);
         }
 
         private void Form1_Resize(object sender, EventArgs e)

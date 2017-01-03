@@ -48,6 +48,12 @@ namespace BlueDrops
 
         public Aquarium()
         {
+            //InicializujRucne();
+            InicializujAutomaticky();
+        }
+        
+        private void InicializujRucne()
+        {
             balls.Add(new Ball { Color = Color.BlueViolet, Xcoord = 10, Ycoord = 40, Diameter = 40 });
             balls.Add(new Ball { Color = Color.Azure, Xcoord = 30, Ycoord = 140, Diameter = 60 });
             balls.Add(new Ball { Color = Color.Red, Xcoord = 60, Ycoord = 20, Diameter = 80 });
@@ -57,14 +63,31 @@ namespace BlueDrops
             balls.Add(new Ball { Color = Color.Red, Xcoord = 180, Ycoord = 60, Diameter = 50 });
             balls.Add(new Ball { Color = Color.AliceBlue, Xcoord = 170, Ycoord = 50, Diameter = 50 });
             balls.Add(new Ball { Color = Color.Blue, Xcoord = 70, Ycoord = 150, Diameter = 70 });
-            bub.Add(new Bubble { Xcoord = 10, Ycoord = 25});
-            bub.Add(new Bubble { Xcoord = 147, Ycoord =60 });
-            bub.Add(new Bubble { Xcoord =132 , Ycoord = 70});
-            bub.Add(new Bubble { Xcoord = 63 , Ycoord = 60});
-            bub.Add(new Bubble { Xcoord = 85, Ycoord = 50});
-            bub.Add(new Bubble { Xcoord = 23, Ycoord = 80});
-            bub.Add(new Bubble { Xcoord = 84, Ycoord = 90});
-            bub.Add(new Bubble { Xcoord = 142, Ycoord = 60});
+            bub.Add(new Bubble { Xcoord = 10, Ycoord = 25 });
+            bub.Add(new Bubble { Xcoord = 147, Ycoord = 60 });
+            bub.Add(new Bubble { Xcoord = 132, Ycoord = 70 });
+            bub.Add(new Bubble { Xcoord = 63, Ycoord = 60 });
+            bub.Add(new Bubble { Xcoord = 85, Ycoord = 50 });
+            bub.Add(new Bubble { Xcoord = 23, Ycoord = 80 });
+            bub.Add(new Bubble { Xcoord = 84, Ycoord = 90 });
+            bub.Add(new Bubble { Xcoord = 142, Ycoord = 60 });
+        }
+
+        private void InicializujAutomaticky()
+        {
+            var generator = new Random();
+            for(int i = 0; i < 71; i++)
+            {
+                balls.Add(new Ball {
+                    Color = Color.FromArgb(
+                        generator.Next(200, 255),
+                        generator.Next(200, 255), 
+                        generator.Next(200, 255), 
+                        generator.Next(200, 255)),
+                    Xcoord = generator.Next(1000),
+                    Ycoord = generator.Next(600),
+                    Diameter = generator.Next(10, 50) });
+            }
         }
 
         public void RainByPixel()
@@ -80,7 +103,7 @@ namespace BlueDrops
                 var a = Ycur - (oneball.Ycoord + 0.5f * oneball.Diameter);
                 var b = Xcur - (oneball.Xcoord + 0.5f * oneball.Diameter);
                 var c = (float)Math.Sqrt(a*a + b*b);
-                var k = 500000.0f;
+                var k = 5000000.0f;
                 var Fg = k*1.0f*1.0f/(c*c);
                 var Fgx = Fg * b / c;
                 var Fgy = Fg * a / c;
@@ -94,7 +117,7 @@ namespace BlueDrops
                 var timeStep = 0.02f;
                 var velocityY = oneball.Yvelocity;
                 var velocityX = oneball.Xvelocity;
-                var g = 0f;
+                var g = 200f;
 
                 var deltavelocityY = (g+Fgy) * timeStep;
                 oneball.Yvelocity = oneball.Yvelocity + deltavelocityY;
@@ -121,6 +144,11 @@ namespace BlueDrops
                 {
                     oneball.Xcoord = aqariumWidth;
                     oneball.Xvelocity = -oneball.Xvelocity;
+                }
+                if (oneball.Ycoord < 0)
+                {
+                    oneball.Ycoord = 0;
+                    oneball.Yvelocity = -oneball.Yvelocity;
                 }
                 #endregion 
             }
